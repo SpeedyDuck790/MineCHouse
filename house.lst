@@ -6,26 +6,70 @@
  x3003  | x56E0 | 0101011011100000 |    5 | AND R3, R3, #0
  x3004  | x5920 | 0101100100100000 |    6 | AND R4, R4, #0
  x3005  | x1B60 | 0001101101100000 |    7 | ADD R5, R5, #0;reseting regs
- x3006  | xF036 | 1111000000110110 |    8 | TRAP 0x36; printing regs
- x3007  | xF031 | 1111000000110001 |    9 | TRAP 0x31; getting player coords
- x3008  | x1023 | 0001000000100011 |   10 | ADD R0, R0, #3; setting up in front of player
- x3009  | x14A3 | 0001010010100011 |   11 | ADD R2, R2  , #3;to avoid it being in the same spot as player when built
- x300A  | x2A0C | 0010101000001100 |   12 | LD R5, COUNTER; setting up counter to stop building direction
-        |       |                  |   13 | 
- x300B  | x260C | 0010011000001100 |   14 | NEXT LD R3, BLOCK
- x300C  | x280A | 0010100000001010 |   15 | LD R4, COUNTER; setting up counter to stop tower building
- x300D  | x1261 | 0001001001100001 |   16 | LOOP ADD R1,R1,#1; tower up
- x300E  | xF034 | 1111000000110100 |   17 | TRAP 0x34; place
- x300F  | xF036 | 1111000000110110 |   18 | TRAP 0x36; reg chk
- x3010  | x193F | 0001100100111111 |   19 | ADD R4, R4, #-1; counter down tower
- x3011  | x03FB | 0000001111111011 |   20 | BRp LOOP; if not zero, more tower to build
-        |       |                  |   21 | 
- x3012  | x1021 | 0001000000100001 |   22 | ADD R0, R0, #1;left increment 
- x3013  | x1276 | 0001001001110110 |   23 | ADD R1, R1, #-10;reset tower height
- x3014  | x1B7F | 0001101101111111 |   24 | ADD R5, R5, #-1; counter down direction
- x3015  | x03F5 | 0000001111110101 |   25 | BRp NEXT;if not zero, more to build in that direction
-        |       |                  |   26 | 
- x3016  | xF025 | 1111000000100101 |   27 |     HALT
- x3017  | x000A | 0000000000001010 |   28 |     COUNTER .FILL #10
- x3018  | x0001 | 0000000000000001 |   29 |     BLOCK .FILL #1
-        |       |                  |   30 | .END
+ x3006  | x1DA0 | 0001110110100000 |    8 | ADD R6, R6, #0
+ x3007  | xF036 | 1111000000110110 |    9 | TRAP 0x36; printing regs
+ x3008  | xF031 | 1111000000110001 |   10 | TRAP 0x31; getting player coords
+ x3009  | x1023 | 0001000000100011 |   11 | ADD R0, R0, #3; setting up in front of player
+ x300A  | x14A3 | 0001010010100011 |   12 | ADD R2, R2  , #3;to avoid it being in the same spot as player when built
+ x300B  | x2A30 | 0010101000110000 |   13 | LD R5, COUNTER; setting up counter to stop building direction
+ x300C  | x2630 | 0010011000110000 |   14 | LD R3, BLOCK;TOWER
+        |       |                  |   15 | 
+ x300D  | x282E | 0010100000101110 |   16 | NEXT LD R4, COUNTER; setting up counter to stop tower building
+ x300E  | x1261 | 0001001001100001 |   17 | LOOP ADD R1,R1,#1; tower up
+ x300F  | xF034 | 1111000000110100 |   18 | TRAP 0x34; place
+ x3010  | xF036 | 1111000000110110 |   19 | TRAP 0x36; reg chk
+ x3011  | x193F | 0001100100111111 |   20 | ADD R4, R4, #-1; counter down tower
+ x3012  | x03FB | 0000001111111011 |   21 | BRp LOOP; if not zero, more tower to build
+        |       |                  |   22 | 
+ x3013  | x1021 | 0001000000100001 |   23 | ADD R0, R0, #1;left increment ;MOVE Direction
+ x3014  | x1276 | 0001001001110110 |   24 | ADD R1, R1, #-10;reset tower height
+ x3015  | x1B7F | 0001101101111111 |   25 | ADD R5, R5, #-1; counter down direction
+ x3016  | x03F6 | 0000001111110110 |   26 | BRp NEXT;if not zero, more to build in that direction
+        |       |                  |   27 | 
+ x3017  | x14A1 | 0001010010100001 |   28 | ADD R2, R2, #1
+ x3018  | x2A23 | 0010101000100011 |   29 | LD R5, COUNTER
+ x3019  | x2822 | 0010100000100010 |   30 | NEXT2 LD R4, COUNTER; setting up counter to stop tower building
+ x301A  | x1261 | 0001001001100001 |   31 | LOOP2 ADD R1,R1,#1; tower up
+ x301B  | xF034 | 1111000000110100 |   32 | TRAP 0x34; place
+ x301C  | xF036 | 1111000000110110 |   33 | TRAP 0x36; reg chk
+ x301D  | x193F | 0001100100111111 |   34 | ADD R4, R4, #-1; counter down tower
+ x301E  | x03FB | 0000001111111011 |   35 | BRp LOOP2; if not zero, more tower to build
+        |       |                  |   36 | 
+ x301F  | x14A1 | 0001010010100001 |   37 | ADD R2, R2, #1;left increment ;MOVE Direction
+ x3020  | x1276 | 0001001001110110 |   38 | ADD R1, R1, #-10;reset tower height
+ x3021  | x1B7F | 0001101101111111 |   39 | ADD R5, R5, #-1; counter down direction
+ x3022  | x03F6 | 0000001111110110 |   40 | BRp NEXT2;if not zero, more to build in that direction
+        |       |                  |   41 | 
+        |       |                  |   42 | 
+ x3023  | x103F | 0001000000111111 |   43 | ADD R0, R0, #-1
+ x3024  | x2A17 | 0010101000010111 |   44 | LD R5, COUNTER
+ x3025  | x2816 | 0010100000010110 |   45 | NEXT3 LD R4, COUNTER; setting up counter to stop tower building
+ x3026  | x1261 | 0001001001100001 |   46 | LOOP3 ADD R1,R1,#1; tower up
+ x3027  | xF034 | 1111000000110100 |   47 | TRAP 0x34; place
+ x3028  | xF036 | 1111000000110110 |   48 | TRAP 0x36; reg chk
+ x3029  | x193F | 0001100100111111 |   49 | ADD R4, R4, #-1; counter down tower
+ x302A  | x03FB | 0000001111111011 |   50 | BRp LOOP3; if not zero, more tower to build
+        |       |                  |   51 | 
+ x302B  | x103F | 0001000000111111 |   52 | ADD R0, R0, #-1;left increment ;MOVE Direction
+ x302C  | x1276 | 0001001001110110 |   53 | ADD R1, R1, #-10;reset tower height
+ x302D  | x1B7F | 0001101101111111 |   54 | ADD R5, R5, #-1; counter down direction
+ x302E  | x03F6 | 0000001111110110 |   55 | BRp NEXT3;if not zero, more to build in that direction
+        |       |                  |   56 | 
+ x302F  | x14BF | 0001010010111111 |   57 | ADD R2, R2, #-1
+ x3030  | x2A0B | 0010101000001011 |   58 | LD R5, COUNTER
+ x3031  | x280A | 0010100000001010 |   59 | NEXT3 LD R4, COUNTER; setting up counter to stop tower building
+ x3032  | x1261 | 0001001001100001 |   60 | LOOP3 ADD R1,R1,#1; tower up
+ x3033  | xF034 | 1111000000110100 |   61 | TRAP 0x34; place
+ x3034  | xF036 | 1111000000110110 |   62 | TRAP 0x36; reg chk
+ x3035  | x193F | 0001100100111111 |   63 | ADD R4, R4, #-1; counter down tower
+ x3036  | x03EF | 0000001111101111 |   64 | BRp LOOP3; if not zero, more tower to build
+        |       |                  |   65 | 
+ x3037  | x14BF | 0001010010111111 |   66 | ADD R2, R2, #-1;left increment ;MOVE Direction
+ x3038  | x1276 | 0001001001110110 |   67 | ADD R1, R1, #-10;reset tower height
+ x3039  | x1B7F | 0001101101111111 |   68 | ADD R5, R5, #-1; counter down direction
+ x303A  | x03EA | 0000001111101010 |   69 | BRp NEXT3;if not zero, more to build in that direction
+        |       |                  |   70 | 
+ x303B  | xF025 | 1111000000100101 |   71 |     HALT
+ x303C  | x000A | 0000000000001010 |   72 |     COUNTER .FILL #10
+ x303D  | x0001 | 0000000000000001 |   73 |     BLOCK .FILL #1
+        |       |                  |   74 | .END
