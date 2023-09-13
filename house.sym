@@ -4,7 +4,7 @@ NEXT2                                                                      x3019
 LOOP2                                                                      x301A
 NEXT3                                                                      x3025
 LOOP3                                                                      x3026
-NEXT3                                                                      x3031
-LOOP3                                                                      x3032
+NEXT4                                                                      x3031
+LOOP4                                                                      x3032
 COUNTER                                                                    x303C
 BLOCK                                                                      x303D
